@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Microondas-Benner")]
+[assembly: AssemblyTitle("MicroondasBenner")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Microondas-Benner")]
+[assembly: AssemblyProduct("MicroondasBenner")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("50a44fea-01dc-4caf-857e-528f60f3aeb0")]
+[assembly: Guid("483124a3-4e87-4928-a751-74b1a37f321c")]
 
 // Version information for an assembly consists of the following four values:
 //

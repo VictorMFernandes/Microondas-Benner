@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microondas_Benner.Properties
+namespace MicroondasBenner.Properties
 {
 
 

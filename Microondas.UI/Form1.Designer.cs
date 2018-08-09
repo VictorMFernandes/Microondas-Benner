@@ -1,4 +1,4 @@
-﻿namespace Microondas_Benner
+﻿namespace MicroondasBenner
 {
 	partial class Form1
 	{
