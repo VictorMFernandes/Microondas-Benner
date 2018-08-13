@@ -20,9 +20,27 @@ namespace Microondas.UI
 
 		private void BtnAquecerClick(object sender, System.EventArgs e)
 		{
+			ExecutarMicroondas(microondas.Aquecer(TxTempo.Text, TxPotencia.Text));
+		}
+
+		private void ExecutarMicroondas(BLL.Configuracao configuracao)
+		{
+			TxConsole.Text = string.Empty;
+
+			if (microondas.LogErros.Count > 0)
+			{
+				TxConsole.Text = string.Join("\r\n", microondas.LogErros);
+				microondas.Resetar();
+			}
 
 
-			microondas.Aquecer(TxTempo.Text, TxPotencia.Text);
+
+			AcionarInterface(configuracao);
+		}
+
+		private void AcionarInterface(BLL.Configuracao configuracao)
+		{
+
 		}
 	}
 }
