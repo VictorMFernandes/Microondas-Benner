@@ -38,6 +38,7 @@
 			this.BtnParar = new System.Windows.Forms.Button();
 			this.LblAquecida = new System.Windows.Forms.Label();
 			this.TxConsole = new System.Windows.Forms.TextBox();
+			this.LblPotencia = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// TxEntrada
@@ -99,6 +100,7 @@
 			this.BtnAquecRapido.TabIndex = 6;
 			this.BtnAquecRapido.Text = "Aquecimento Rápido";
 			this.BtnAquecRapido.UseVisualStyleBackColor = true;
+			this.BtnAquecRapido.Click += new System.EventHandler(this.BtnAquecerRapidoClick);
 			// 
 			// BtnParar
 			// 
@@ -119,7 +121,6 @@
 			this.LblAquecida.Name = "LblAquecida";
 			this.LblAquecida.Size = new System.Drawing.Size(480, 420);
 			this.LblAquecida.TabIndex = 8;
-			this.LblAquecida.Text = "aquecida";
 			this.LblAquecida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// TxConsole
@@ -133,11 +134,22 @@
 			this.TxConsole.Size = new System.Drawing.Size(268, 129);
 			this.TxConsole.TabIndex = 9;
 			// 
+			// LblPotencia
+			// 
+			this.LblPotencia.AutoSize = true;
+			this.LblPotencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.LblPotencia.ForeColor = System.Drawing.Color.DarkRed;
+			this.LblPotencia.Location = new System.Drawing.Point(19, 16);
+			this.LblPotencia.Name = "LblPotencia";
+			this.LblPotencia.Size = new System.Drawing.Size(0, 25);
+			this.LblPotencia.TabIndex = 10;
+			// 
 			// Principal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(778, 441);
+			this.Controls.Add(this.LblPotencia);
 			this.Controls.Add(this.TxConsole);
 			this.Controls.Add(this.LblAquecida);
 			this.Controls.Add(this.BtnParar);
@@ -167,6 +179,7 @@
 		private System.Windows.Forms.Button BtnParar;
 		private System.Windows.Forms.Label LblAquecida;
 		private System.Windows.Forms.TextBox TxConsole;
+		private System.Windows.Forms.Label LblPotencia;
 	}
 }
 
