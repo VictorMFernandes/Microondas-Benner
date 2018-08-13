@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constantes\MensagensConst.cs" />
+    <Compile Include="Constantes\MicroondasConst.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -41,13 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuracao.cs" />
-    <Compile Include="Estrategias\Programa.cs" />
-    <Compile Include="Estrategias\ProgramaMacarrao.cs" />
-    <Compile Include="Estrategias\ProgramaCostela.cs" />
-    <Compile Include="Estrategias\ProgramaArroz.cs" />
-    <Compile Include="Estrategias\ProgramaPadrao.cs" />
-    <Compile Include="Estrategias\ProgramaPeixe.cs" />
-    <Compile Include="Estrategias\ProgramaFrango.cs" />
+    <Compile Include="ProgramasEstrategias\Programa.cs" />
+    <Compile Include="ProgramasEstrategias\ProgramaMacarrao.cs" />
+    <Compile Include="ProgramasEstrategias\ProgramaCostela.cs" />
+    <Compile Include="ProgramasEstrategias\ProgramaArroz.cs" />
+    <Compile Include="ProgramasEstrategias\ProgramaPadrao.cs" />
+    <Compile Include="ProgramasEstrategias\ProgramaPeixe.cs" />
+    <Compile Include="ProgramasEstrategias\ProgramaFrango.cs" />
     <Compile Include="Microondas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

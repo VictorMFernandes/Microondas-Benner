@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MicroondasBenner;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -18,50 +21,61 @@ namespace Microondas.UI
 
 		private void Inicializacao()
 		{
+			//Pega o singleton Microondas
 			microondas = BLL.Microondas.PegarInstancia();
+			//Cuida do cronômetro
 			timer = new Timer();
 			timer.Tick += new EventHandler(AtualizarInterface);
 			timer.Interval = 1000;
+			//Mostra a mensagem inicial no console do Microondas
+			MostrarMsgConsole(MensagensConst.msgInicial);
 		}
 
+		#region Métodos de controle dos botões
 		private void BtnAquecerClick(object sender, System.EventArgs e)
 		{
-			PrepararMicroondas(microondas.Aquecer(TxTempo.Text, TxPotencia.Text, TxEntrada.Text));
+			PrepararInterface(microondas.Aquecer(TxTempo.Text, TxPotencia.Text, TxEntrada.Text));
 		}
 
 		private void BtnAquecerRapidoClick(object sender, System.EventArgs e)
 		{
-			PrepararMicroondas(microondas.Aquecer(BLL.Microondas.tempoPadrao.ToString(), BLL.Microondas.potenciaPadrao.ToString()));
+			PrepararInterface(microondas.Aquecer(BLL.Microondas.tempoPadrao.ToString(), BLL.Microondas.potenciaPadrao.ToString()));
 		}
-
-		private void PrepararMicroondas(BLL.Estrategias.Programa programa)
+		private void BtnEnviarClick(object sender, EventArgs e)
 		{
-			TxConsole.Text = string.Empty;
+
+		}
+		#endregion
+
+		#region Métodos de manipulação da interface
+		private void PrepararInterface(BLL.ProgramasEstrategias.Programa programa)
+		{
+			LimparMsgConsole();
 
 			if (microondas.LogErros.Count > 0)
 			{
-				TxConsole.Text = string.Join("\r\n", microondas.LogErros);
+				MostrarMsgConsole(microondas.LogErros.ToList(), MicroondasConst.modoErro);
 				microondas.Resetar();
 				return;
 			}
 
-			LigarMicroondas(programa);
+			LigarInterface(programa);
 		}
 
-		private void LigarMicroondas(BLL.Estrategias.Programa programa)
+		private void LigarInterface(BLL.ProgramasEstrategias.Programa programa)
 		{
 			timer.Start();
-			LblAquecida.Text = programa.Configuracao.Tempo.ToString();
+			MostrarMsgConsole(programa.Configuracao.Tempo.ToString(), MicroondasConst.modoAquecimento);
 			LblPotencia.Text = $"Potência: {programa.Configuracao.Potencia.ToString()}";
 		}
 
 		private void AtualizarInterface(Object sender, EventArgs e)
 		{
-			if (int.TryParse(LblAquecida.Text, out int res))
+			if (int.TryParse(LblConsole.Text, out int res))
 			{
 				if (res <= 0)
 				{
-					LblAquecida.Text = "Aquecida";
+					MostrarMsgConsole("Aquecida", MicroondasConst.modoAquecimento);
 					ResetarInterface();
 					timer.Stop();
 					return;
@@ -76,7 +90,8 @@ namespace Microondas.UI
 				sb.Append(" ");
 
 				TxEntrada.Text = sb.ToString();
-				LblAquecida.Text = (--res).ToString();
+
+				MostrarMsgConsole((--res).ToString(), MicroondasConst.modoAquecimento);
 			}
 		}
 
@@ -84,6 +99,51 @@ namespace Microondas.UI
 		{
 			TxEntrada.Text = microondas.TextoEntrada;
 		}
+		#endregion
+		
+		#region Métodos do console
+		private void MostrarMsgConsole(string mensagem, char? modo = null)
+		{
+			LblConsole.Text = string.Empty;
 
+			modo = modo ?? MicroondasConst.modoConsole;
+
+			var texto = string.Join("\r\n", mensagem);
+
+			if (modo == MicroondasConst.modoConsole)
+			{
+				LblConsole.Font = new System.Drawing.Font(MensagensConst.fontePrincipal, 14f);
+				LblConsole.ForeColor = System.Drawing.Color.White;
+				LblConsole.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+				LblConsole.Text = texto;
+			}
+			else if (modo == MicroondasConst.modoAquecimento)
+			{
+				LblConsole.Font = new System.Drawing.Font(MensagensConst.fontePrincipal, 70f);
+				LblConsole.ForeColor = System.Drawing.Color.Red;
+				LblConsole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+				LblConsole.Text = texto;
+			}
+			else if (modo == MicroondasConst.modoErro)
+			{
+				LblConsole.Font = new System.Drawing.Font(MensagensConst.fontePrincipal, 20f);
+				LblConsole.ForeColor = System.Drawing.Color.Red;
+				LblConsole.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+				LblConsole.Text = texto;
+			}
+		}
+
+		private void MostrarMsgConsole(List<string> mensagem, char? modo = null)
+		{
+			var texto = string.Join("\r\n", mensagem);
+
+			MostrarMsgConsole(texto, modo);
+		}
+
+		private void LimparMsgConsole()
+		{
+			LblConsole.Text = string.Empty;
+		}
+		#endregion
 	}
 }

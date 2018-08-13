@@ -36,14 +36,14 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.BtnAquecRapido = new System.Windows.Forms.Button();
 			this.BtnParar = new System.Windows.Forms.Button();
-			this.LblAquecida = new System.Windows.Forms.Label();
-			this.TxConsole = new System.Windows.Forms.TextBox();
+			this.LblConsole = new System.Windows.Forms.Label();
 			this.LblPotencia = new System.Windows.Forms.Label();
+			this.BtnEnviar = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// TxEntrada
 			// 
-			this.TxEntrada.Location = new System.Drawing.Point(498, 9);
+			this.TxEntrada.Location = new System.Drawing.Point(670, 16);
 			this.TxEntrada.Name = "TxEntrada";
 			this.TxEntrada.Size = new System.Drawing.Size(268, 20);
 			this.TxEntrada.TabIndex = 0;
@@ -51,7 +51,7 @@
 			// BtnAquecer
 			// 
 			this.BtnAquecer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-			this.BtnAquecer.Location = new System.Drawing.Point(498, 367);
+			this.BtnAquecer.Location = new System.Drawing.Point(670, 435);
 			this.BtnAquecer.Name = "BtnAquecer";
 			this.BtnAquecer.Size = new System.Drawing.Size(170, 62);
 			this.BtnAquecer.TabIndex = 1;
@@ -61,14 +61,14 @@
 			// 
 			// TxTempo
 			// 
-			this.TxTempo.Location = new System.Drawing.Point(637, 267);
+			this.TxTempo.Location = new System.Drawing.Point(799, 325);
 			this.TxTempo.Name = "TxTempo";
 			this.TxTempo.Size = new System.Drawing.Size(137, 20);
 			this.TxTempo.TabIndex = 2;
 			// 
 			// TxPotencia
 			// 
-			this.TxPotencia.Location = new System.Drawing.Point(637, 241);
+			this.TxPotencia.Location = new System.Drawing.Point(799, 299);
 			this.TxPotencia.Name = "TxPotencia";
 			this.TxPotencia.Size = new System.Drawing.Size(137, 20);
 			this.TxPotencia.TabIndex = 3;
@@ -76,7 +76,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(498, 267);
+			this.label1.Location = new System.Drawing.Point(660, 325);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(110, 13);
 			this.label1.TabIndex = 4;
@@ -85,7 +85,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(498, 241);
+			this.label2.Location = new System.Drawing.Point(660, 299);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(52, 13);
 			this.label2.TabIndex = 5;
@@ -94,7 +94,7 @@
 			// BtnAquecRapido
 			// 
 			this.BtnAquecRapido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.BtnAquecRapido.Location = new System.Drawing.Point(498, 299);
+			this.BtnAquecRapido.Location = new System.Drawing.Point(670, 367);
 			this.BtnAquecRapido.Name = "BtnAquecRapido";
 			this.BtnAquecRapido.Size = new System.Drawing.Size(268, 62);
 			this.BtnAquecRapido.TabIndex = 6;
@@ -105,34 +105,23 @@
 			// BtnParar
 			// 
 			this.BtnParar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-			this.BtnParar.Location = new System.Drawing.Point(674, 367);
+			this.BtnParar.Location = new System.Drawing.Point(846, 435);
 			this.BtnParar.Name = "BtnParar";
 			this.BtnParar.Size = new System.Drawing.Size(92, 62);
 			this.BtnParar.TabIndex = 7;
 			this.BtnParar.Text = "Parar";
 			this.BtnParar.UseVisualStyleBackColor = true;
 			// 
-			// LblAquecida
+			// LblConsole
 			// 
-			this.LblAquecida.BackColor = System.Drawing.Color.Black;
-			this.LblAquecida.Font = new System.Drawing.Font("Microsoft Sans Serif", 70F);
-			this.LblAquecida.ForeColor = System.Drawing.Color.Red;
-			this.LblAquecida.Location = new System.Drawing.Point(12, 9);
-			this.LblAquecida.Name = "LblAquecida";
-			this.LblAquecida.Size = new System.Drawing.Size(480, 420);
-			this.LblAquecida.TabIndex = 8;
-			this.LblAquecida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// TxConsole
-			// 
-			this.TxConsole.BackColor = System.Drawing.SystemColors.Menu;
-			this.TxConsole.Enabled = false;
-			this.TxConsole.ForeColor = System.Drawing.Color.Red;
-			this.TxConsole.Location = new System.Drawing.Point(498, 36);
-			this.TxConsole.Multiline = true;
-			this.TxConsole.Name = "TxConsole";
-			this.TxConsole.Size = new System.Drawing.Size(268, 129);
-			this.TxConsole.TabIndex = 9;
+			this.LblConsole.BackColor = System.Drawing.Color.Black;
+			this.LblConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 70F);
+			this.LblConsole.ForeColor = System.Drawing.Color.Red;
+			this.LblConsole.Location = new System.Drawing.Point(12, 9);
+			this.LblConsole.Name = "LblConsole";
+			this.LblConsole.Size = new System.Drawing.Size(642, 488);
+			this.LblConsole.TabIndex = 8;
+			this.LblConsole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// LblPotencia
 			// 
@@ -144,14 +133,24 @@
 			this.LblPotencia.Size = new System.Drawing.Size(0, 25);
 			this.LblPotencia.TabIndex = 10;
 			// 
+			// BtnEnviar
+			// 
+			this.BtnEnviar.Location = new System.Drawing.Point(765, 43);
+			this.BtnEnviar.Name = "BtnEnviar";
+			this.BtnEnviar.Size = new System.Drawing.Size(75, 23);
+			this.BtnEnviar.TabIndex = 11;
+			this.BtnEnviar.Text = "Enviar";
+			this.BtnEnviar.UseVisualStyleBackColor = true;
+			this.BtnEnviar.Click += new System.EventHandler(this.BtnEnviarClick);
+			// 
 			// Principal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(778, 441);
+			this.ClientSize = new System.Drawing.Size(950, 509);
+			this.Controls.Add(this.BtnEnviar);
 			this.Controls.Add(this.LblPotencia);
-			this.Controls.Add(this.TxConsole);
-			this.Controls.Add(this.LblAquecida);
+			this.Controls.Add(this.LblConsole);
 			this.Controls.Add(this.BtnParar);
 			this.Controls.Add(this.BtnAquecRapido);
 			this.Controls.Add(this.label2);
@@ -177,9 +176,9 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button BtnAquecRapido;
 		private System.Windows.Forms.Button BtnParar;
-		private System.Windows.Forms.Label LblAquecida;
-		private System.Windows.Forms.TextBox TxConsole;
+		private System.Windows.Forms.Label LblConsole;
 		private System.Windows.Forms.Label LblPotencia;
+		private System.Windows.Forms.Button BtnEnviar;
 	}
 }
 
