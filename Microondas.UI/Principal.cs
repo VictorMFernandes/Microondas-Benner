@@ -12,6 +12,7 @@ namespace Microondas.UI
 		private BLL.Microondas microondas;
 		private Timer timer;
 		private string textoEntrada;
+		private bool parado;
 
 		public Principal()
 		{
@@ -36,6 +37,12 @@ namespace Microondas.UI
 		#region Métodos de controle dos botões
 		private void BtnAquecerClick(object sender, System.EventArgs e)
 		{
+			if (parado)
+			{
+				timer.Start();
+				parado = false;
+				return;
+			}
 			PrepararInterface(microondas.Aquecer(TxTempo.Text, TxPotencia.Text, TxEntrada.Text));
 		}
 
@@ -87,6 +94,19 @@ namespace Microondas.UI
 		private void BtnResetarConsoleClick(object sender, EventArgs e)
 		{
 			MostrarMsgConsole(MensagensConst.msgInicial);
+		}
+		private void BtnPararClick(object sender, EventArgs e)
+		{
+			if (!parado)
+			{
+				timer.Stop();
+				parado = true;
+			}
+			else
+			{
+				ResetarInterface();
+				parado = false;
+			}
 		}
 		#endregion
 
@@ -141,6 +161,8 @@ namespace Microondas.UI
 		private void ResetarInterface()
 		{
 			TxEntrada.Text = microondas.TextoEntrada;
+			LimparMsgConsole();
+			LblPotencia.Text = string.Empty;
 		}
 		#endregion
 
@@ -187,8 +209,8 @@ namespace Microondas.UI
 		{
 			TxConsole.Text = string.Empty;
 		}
+
 		#endregion
 
-		
 	}
 }

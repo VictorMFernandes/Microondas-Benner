@@ -112,6 +112,7 @@
 			this.BtnParar.TabIndex = 7;
 			this.BtnParar.Text = "Parar";
 			this.BtnParar.UseVisualStyleBackColor = true;
+			this.BtnParar.Click += new System.EventHandler(this.BtnPararClick);
 			// 
 			// LblPotencia
 			// 
