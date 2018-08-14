@@ -14,9 +14,9 @@ namespace Microondas.BLL.ProgramasEstrategias
 			List<string> info = new List<string>()
 			{
 				$"-{Nome}",
-				$"-{Instrucoes}",
-				$"-Tempo: {Configuracao.Tempo} | Potência: {Configuracao.Potencia}",
-				$"-Caracter: {Caracter}"
+				$"--{Instrucoes}",
+				$"--Tempo: {Configuracao.Tempo} | Potência: {Configuracao.Potencia}",
+				$"--Caracter: {Caracter}"
 			};
 			return info;
 		}

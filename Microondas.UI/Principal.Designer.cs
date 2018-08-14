@@ -36,9 +36,10 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.BtnAquecRapido = new System.Windows.Forms.Button();
 			this.BtnParar = new System.Windows.Forms.Button();
-			this.LblConsole = new System.Windows.Forms.Label();
 			this.LblPotencia = new System.Windows.Forms.Label();
 			this.BtnEnviar = new System.Windows.Forms.Button();
+			this.BtnResetarConsole = new System.Windows.Forms.Button();
+			this.TxConsole = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// TxEntrada
@@ -112,23 +113,12 @@
 			this.BtnParar.Text = "Parar";
 			this.BtnParar.UseVisualStyleBackColor = true;
 			// 
-			// LblConsole
-			// 
-			this.LblConsole.BackColor = System.Drawing.Color.Black;
-			this.LblConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 70F);
-			this.LblConsole.ForeColor = System.Drawing.Color.Red;
-			this.LblConsole.Location = new System.Drawing.Point(12, 9);
-			this.LblConsole.Name = "LblConsole";
-			this.LblConsole.Size = new System.Drawing.Size(642, 488);
-			this.LblConsole.TabIndex = 8;
-			this.LblConsole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
 			// LblPotencia
 			// 
 			this.LblPotencia.AutoSize = true;
 			this.LblPotencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.LblPotencia.ForeColor = System.Drawing.Color.DarkRed;
-			this.LblPotencia.Location = new System.Drawing.Point(19, 16);
+			this.LblPotencia.Location = new System.Drawing.Point(24, 28);
 			this.LblPotencia.Name = "LblPotencia";
 			this.LblPotencia.Size = new System.Drawing.Size(0, 25);
 			this.LblPotencia.TabIndex = 10;
@@ -143,14 +133,37 @@
 			this.BtnEnviar.UseVisualStyleBackColor = true;
 			this.BtnEnviar.Click += new System.EventHandler(this.BtnEnviarClick);
 			// 
+			// BtnResetarConsole
+			// 
+			this.BtnResetarConsole.Location = new System.Drawing.Point(908, 43);
+			this.BtnResetarConsole.Name = "BtnResetarConsole";
+			this.BtnResetarConsole.Size = new System.Drawing.Size(27, 23);
+			this.BtnResetarConsole.TabIndex = 12;
+			this.BtnResetarConsole.Text = "X";
+			this.BtnResetarConsole.UseVisualStyleBackColor = true;
+			this.BtnResetarConsole.Click += new System.EventHandler(this.BtnResetarConsoleClick);
+			// 
+			// TxConsole
+			// 
+			this.TxConsole.BackColor = System.Drawing.Color.Black;
+			this.TxConsole.ForeColor = System.Drawing.SystemColors.WindowText;
+			this.TxConsole.Location = new System.Drawing.Point(13, 16);
+			this.TxConsole.Multiline = true;
+			this.TxConsole.Name = "TxConsole";
+			this.TxConsole.ReadOnly = true;
+			this.TxConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.TxConsole.Size = new System.Drawing.Size(641, 483);
+			this.TxConsole.TabIndex = 13;
+			// 
 			// Principal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(950, 509);
+			this.ClientSize = new System.Drawing.Size(954, 508);
+			this.Controls.Add(this.TxConsole);
+			this.Controls.Add(this.BtnResetarConsole);
 			this.Controls.Add(this.BtnEnviar);
 			this.Controls.Add(this.LblPotencia);
-			this.Controls.Add(this.LblConsole);
 			this.Controls.Add(this.BtnParar);
 			this.Controls.Add(this.BtnAquecRapido);
 			this.Controls.Add(this.label2);
@@ -176,9 +189,10 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button BtnAquecRapido;
 		private System.Windows.Forms.Button BtnParar;
-		private System.Windows.Forms.Label LblConsole;
 		private System.Windows.Forms.Label LblPotencia;
 		private System.Windows.Forms.Button BtnEnviar;
+		private System.Windows.Forms.Button BtnResetarConsole;
+		private System.Windows.Forms.TextBox TxConsole;
 	}
 }
 

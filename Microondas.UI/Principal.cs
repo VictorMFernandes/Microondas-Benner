@@ -29,6 +29,8 @@ namespace Microondas.UI
 			timer.Interval = 1000;
 			//Mostra a mensagem inicial no console do Microondas
 			MostrarMsgConsole(MensagensConst.msgInicial);
+			//Traz o label que mostra a potência selecionada para frente
+			LblPotencia.BringToFront();
 		}
 
 		#region Métodos de controle dos botões
@@ -43,7 +45,48 @@ namespace Microondas.UI
 		}
 		private void BtnEnviarClick(object sender, EventArgs e)
 		{
+			if (TxEntrada.Text.ToLower() == "programas")
+			{
+				StringBuilder sb = new StringBuilder();
 
+				foreach (var programa in microondas.ProgramasPreDefinidos)
+				{
+					sb.Append(string.Join("\r\n", programa.PegarInfo()));
+					sb.Append("\r\n");
+				}
+
+				MostrarMsgConsole(sb.ToString());
+			}
+			else if (microondas.ProgramasPreDefinidos.Any(p => p.Nome.ToLower().Contains(TxEntrada.Text.ToLower())))
+			{
+				var programa = microondas
+								.ProgramasPreDefinidos
+								.FirstOrDefault(p => p.Nome.ToLower().Contains(TxEntrada.Text.ToLower()));
+				MostrarMsgConsole(programa.PegarInfo());
+			}
+			else if (TxEntrada.Text.ToLower().StartsWith("criar "))
+			{
+				var comando = TxEntrada.Text.Substring("criar ".Length - 1);
+
+				microondas.RegistrarPrograma(comando);
+
+				if (microondas.LogErros.Count > 0)
+				{
+					MostrarMsgConsole(microondas.LogErros.ToList(), MicroondasConst.modoErro);
+					microondas.Resetar();
+					return;
+				}
+				else
+				{
+					MostrarMsgConsole("-Programa criado com sucesso!");
+					TxEntrada.Text = string.Empty;
+				}
+			}
+
+		}
+		private void BtnResetarConsoleClick(object sender, EventArgs e)
+		{
+			MostrarMsgConsole(MensagensConst.msgInicial);
 		}
 		#endregion
 
@@ -71,7 +114,7 @@ namespace Microondas.UI
 
 		private void AtualizarInterface(Object sender, EventArgs e)
 		{
-			if (int.TryParse(LblConsole.Text, out int res))
+			if (int.TryParse(TxConsole.Text, out int res))
 			{
 				if (res <= 0)
 				{
@@ -100,11 +143,11 @@ namespace Microondas.UI
 			TxEntrada.Text = microondas.TextoEntrada;
 		}
 		#endregion
-		
+
 		#region Métodos do console
 		private void MostrarMsgConsole(string mensagem, char? modo = null)
 		{
-			LblConsole.Text = string.Empty;
+			TxConsole.Text = string.Empty;
 
 			modo = modo ?? MicroondasConst.modoConsole;
 
@@ -112,24 +155,24 @@ namespace Microondas.UI
 
 			if (modo == MicroondasConst.modoConsole)
 			{
-				LblConsole.Font = new System.Drawing.Font(MensagensConst.fontePrincipal, 14f);
-				LblConsole.ForeColor = System.Drawing.Color.White;
-				LblConsole.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-				LblConsole.Text = texto;
+				TxConsole.Font = new System.Drawing.Font(MensagensConst.fontePrincipal, 14f);
+				TxConsole.ForeColor = System.Drawing.Color.White;
+				TxConsole.TextAlign = HorizontalAlignment.Left;
+				TxConsole.Text = texto;
 			}
 			else if (modo == MicroondasConst.modoAquecimento)
 			{
-				LblConsole.Font = new System.Drawing.Font(MensagensConst.fontePrincipal, 70f);
-				LblConsole.ForeColor = System.Drawing.Color.Red;
-				LblConsole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-				LblConsole.Text = texto;
+				TxConsole.Font = new System.Drawing.Font(MensagensConst.fontePrincipal, 70f);
+				TxConsole.ForeColor = System.Drawing.Color.Red;
+				TxConsole.TextAlign = HorizontalAlignment.Center;
+				TxConsole.Text = texto;
 			}
 			else if (modo == MicroondasConst.modoErro)
 			{
-				LblConsole.Font = new System.Drawing.Font(MensagensConst.fontePrincipal, 20f);
-				LblConsole.ForeColor = System.Drawing.Color.Red;
-				LblConsole.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-				LblConsole.Text = texto;
+				TxConsole.Font = new System.Drawing.Font(MensagensConst.fontePrincipal, 20f);
+				TxConsole.ForeColor = System.Drawing.Color.Red;
+				TxConsole.TextAlign = HorizontalAlignment.Left;
+				TxConsole.Text = texto;
 			}
 		}
 
@@ -142,8 +185,10 @@ namespace Microondas.UI
 
 		private void LimparMsgConsole()
 		{
-			LblConsole.Text = string.Empty;
+			TxConsole.Text = string.Empty;
 		}
 		#endregion
+
+		
 	}
 }

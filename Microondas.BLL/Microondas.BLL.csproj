@@ -42,7 +42,8 @@
   <ItemGroup>
     <Compile Include="Configuracao.cs" />
     <Compile Include="ProgramasEstrategias\Programa.cs" />
-    <Compile Include="ProgramasEstrategias\ProgramaMacarrao.cs" />
+    <Compile Include="ProgramasEstrategias\ProgramaCustomizavel.cs" />
+    <Compile Include="ProgramasEstrategias\ProgramaPipoca.cs" />
     <Compile Include="ProgramasEstrategias\ProgramaCostela.cs" />
     <Compile Include="ProgramasEstrategias\ProgramaArroz.cs" />
     <Compile Include="ProgramasEstrategias\ProgramaPadrao.cs" />

@@ -1,5 +1,6 @@
 ﻿using Microondas.BLL.ProgramasEstrategias;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Microondas.BLL
 {
@@ -10,12 +11,22 @@ namespace Microondas.BLL
 		static public readonly int potenciaPadrao = 8;
 		static public readonly int tempoPadrao = 30;
 		public Programa Programa { get; set; }
+		public List<Programa> ProgramasPreDefinidos { get; set; }
 
 		public HashSet<string> LogErros { get; set; }
 
 		private Microondas()
 		{
 			LogErros = new HashSet<string>();
+
+			ProgramasPreDefinidos = new List<Programa>()
+			{
+				new ProgramaArroz(),
+				new ProgramaCostela(),
+				new ProgramaFrango(),
+				new ProgramaPipoca(),
+				new ProgramaNuggets()
+			};
 		}
 
 		static public Microondas PegarInstancia()
@@ -38,6 +49,31 @@ namespace Microondas.BLL
 		public void Resetar()
 		{
 			LogErros = new HashSet<string>();
+		}
+
+		public void RegistrarPrograma(string linhaComando)
+		{
+			var comandos = linhaComando.Split(',');
+
+			if (int.TryParse(comandos[2], out int tempo))
+			{
+				if (int.TryParse(comandos[3], out int potencia))
+				{
+					if (ValidarTempo(tempo.ToString())==0 || ValidarPotencia(potencia.ToString()) ==0)
+					{
+						return;
+					}
+					ProgramasPreDefinidos.Add(new ProgramaCustomizavel(comandos[0].Trim(), comandos[1].Trim(), tempo, potencia, comandos[4].Trim()[0]));
+				}
+				else
+				{
+					LogErros.Add("-Potência deve ser um número");
+				}
+			}
+			else
+			{
+				LogErros.Add("-Tempo deve ser um número");
+			}
 		}
 
 		private int ValidarTempo(string tempo)
@@ -88,25 +124,10 @@ namespace Microondas.BLL
 
 		private Programa DefinirPrograma()
 		{
-			if (TextoEntrada.Contains("frango"))
+			if (ProgramasPreDefinidos.Any(p => p.Nome.ToLower().Contains(TextoEntrada)))
 			{
-				return new ProgramaFrango();
-			}
-			else if (TextoEntrada.Contains("peixe"))
-			{
-				return new ProgramaPeixe();
-			}
-			else if (TextoEntrada.Contains("arroz"))
-			{
-				return new ProgramaArroz();
-			}
-			else if (TextoEntrada.Contains("costela"))
-			{
-				return new ProgramaCostela();
-			}
-			else if (TextoEntrada.Contains("macarrão"))
-			{
-				return new ProgramaMacarrao();
+				return ProgramasPreDefinidos
+								.FirstOrDefault(p => p.Nome.ToLower().Contains(TextoEntrada));
 			}
 
 			LogErros.Add("-Alimento incompatível com o programa.");

@@ -18,7 +18,9 @@ namespace MicroondasBenner
 			"em seguida aperte o botão \"Aquecer\" para iniciar o aquecimento.",
 			"-Você também pode enviar mensagens pelo campo entrada para executar as seguintes funções:",
 			"--programas ->  mostra todos os programas pré-definidos do microondas",
-			"--nomeDoAlimento ->  mostra o programa pré-definido para o alimento especificado, caso exista"
+			"--nomeDoAlimento ->  mostra o programa pré-definido para o alimento especificado, caso exista",
+			"--criar nome,instrucoes,tempo,potencia,caracter->  cria um programa que poderá ser usado posteriormente" +
+			"com as características escolhidas"
 		};
 	}
 }

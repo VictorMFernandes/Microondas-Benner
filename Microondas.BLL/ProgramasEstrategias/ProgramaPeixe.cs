@@ -1,13 +1,13 @@
 ﻿namespace Microondas.BLL.ProgramasEstrategias
 {
-	class ProgramaPeixe : Programa
+	class ProgramaNuggets : Programa
 	{
-		public override string Nome { get; set; } = "Programa Peixe";
-		public override string Instrucoes { get; set; } = "Esse programa deve ser utilizado para aquecer peixes";
+		public override string Nome { get; set; } = "Programa Nuggets";
+		public override string Instrucoes { get; set; } = "Esse programa deve ser utilizado para fazer nuggets";
 		public override Configuracao Configuracao { get; set; } = new Configuracao(50, 3);
-		public override char Caracter { get; set; } = 'P';
+		public override char Caracter { get; set; } = 'N';
 
-		public ProgramaPeixe()
+		public ProgramaNuggets()
 		{
 
 		}
