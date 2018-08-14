@@ -1,0 +1,1 @@
+﻿criar abacaxi,programa para aquecer abacaxi, 20, 3, X

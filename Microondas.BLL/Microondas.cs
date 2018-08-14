@@ -1,5 +1,6 @@
 ﻿using Microondas.BLL.ProgramasEstrategias;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Microondas.BLL
@@ -12,6 +13,7 @@ namespace Microondas.BLL
 		static public readonly int tempoPadrao = 30;
 		public Programa Programa { get; set; }
 		public List<Programa> ProgramasPreDefinidos { get; set; }
+		public string CaminhoArquivo { get; set; }
 
 		public HashSet<string> LogErros { get; set; }
 
@@ -19,6 +21,7 @@ namespace Microondas.BLL
 		{
 			LogErros = new HashSet<string>();
 
+			//Inscreve os programas pré-definidos que já existem
 			ProgramasPreDefinidos = new List<Programa>()
 			{
 				new ProgramaArroz(),
@@ -36,7 +39,16 @@ namespace Microondas.BLL
 
 		public Programa Aquecer(string tempo, string potencia, string txEntrada = "")
 		{
-			TextoEntrada = txEntrada.ToLower();
+			//Se txEntrada for o caminho para algum arquivo
+			if (File.Exists(txEntrada))
+			{
+				CaminhoArquivo = txEntrada;
+				TextoEntrada = File.ReadAllText(txEntrada).ToLower();
+			}
+			else
+			{
+				TextoEntrada = txEntrada.ToLower();
+			}			
 
 			if (!string.IsNullOrEmpty(TextoEntrada))
 			{
@@ -59,7 +71,7 @@ namespace Microondas.BLL
 			{
 				if (int.TryParse(comandos[3], out int potencia))
 				{
-					if (ValidarTempo(tempo.ToString())==0 || ValidarPotencia(potencia.ToString()) ==0)
+					if (ValidarTempo(tempo.ToString()) == 0 || ValidarPotencia(potencia.ToString()) == 0)
 					{
 						return;
 					}

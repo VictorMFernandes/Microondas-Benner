@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.TxEntrada = new System.Windows.Forms.TextBox();
 			this.BtnAquecer = new System.Windows.Forms.Button();
 			this.TxTempo = new System.Windows.Forms.TextBox();
 			this.TxPotencia = new System.Windows.Forms.TextBox();
@@ -40,14 +39,9 @@
 			this.BtnEnviar = new System.Windows.Forms.Button();
 			this.BtnResetarConsole = new System.Windows.Forms.Button();
 			this.TxConsole = new System.Windows.Forms.TextBox();
+			this.TxEntrada = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
-			// 
-			// TxEntrada
-			// 
-			this.TxEntrada.Location = new System.Drawing.Point(670, 16);
-			this.TxEntrada.Name = "TxEntrada";
-			this.TxEntrada.Size = new System.Drawing.Size(268, 20);
-			this.TxEntrada.TabIndex = 0;
 			// 
 			// BtnAquecer
 			// 
@@ -126,7 +120,7 @@
 			// 
 			// BtnEnviar
 			// 
-			this.BtnEnviar.Location = new System.Drawing.Point(765, 43);
+			this.BtnEnviar.Location = new System.Drawing.Point(720, 238);
 			this.BtnEnviar.Name = "BtnEnviar";
 			this.BtnEnviar.Size = new System.Drawing.Size(75, 23);
 			this.BtnEnviar.TabIndex = 11;
@@ -136,7 +130,7 @@
 			// 
 			// BtnResetarConsole
 			// 
-			this.BtnResetarConsole.Location = new System.Drawing.Point(908, 43);
+			this.BtnResetarConsole.Location = new System.Drawing.Point(909, 238);
 			this.BtnResetarConsole.Name = "BtnResetarConsole";
 			this.BtnResetarConsole.Size = new System.Drawing.Size(27, 23);
 			this.BtnResetarConsole.TabIndex = 12;
@@ -156,11 +150,31 @@
 			this.TxConsole.Size = new System.Drawing.Size(641, 483);
 			this.TxConsole.TabIndex = 13;
 			// 
+			// TxEntrada
+			// 
+			this.TxEntrada.Location = new System.Drawing.Point(663, 43);
+			this.TxEntrada.Multiline = true;
+			this.TxEntrada.Name = "TxEntrada";
+			this.TxEntrada.Size = new System.Drawing.Size(273, 189);
+			this.TxEntrada.TabIndex = 14;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.ForeColor = System.Drawing.Color.Gray;
+			this.label3.Location = new System.Drawing.Point(667, 27);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(145, 13);
+			this.label3.TabIndex = 15;
+			this.label3.Text = "ex: criar-programa-abacaxi.txt";
+			// 
 			// Principal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(954, 508);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.TxEntrada);
 			this.Controls.Add(this.TxConsole);
 			this.Controls.Add(this.BtnResetarConsole);
 			this.Controls.Add(this.BtnEnviar);
@@ -172,7 +186,6 @@
 			this.Controls.Add(this.TxPotencia);
 			this.Controls.Add(this.TxTempo);
 			this.Controls.Add(this.BtnAquecer);
-			this.Controls.Add(this.TxEntrada);
 			this.Name = "Principal";
 			this.Text = "Form1";
 			this.ResumeLayout(false);
@@ -181,8 +194,6 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.TextBox TxEntrada;
 		private System.Windows.Forms.Button BtnAquecer;
 		private System.Windows.Forms.TextBox TxTempo;
 		private System.Windows.Forms.TextBox TxPotencia;
@@ -194,6 +205,8 @@
 		private System.Windows.Forms.Button BtnEnviar;
 		private System.Windows.Forms.Button BtnResetarConsole;
 		private System.Windows.Forms.TextBox TxConsole;
+		private System.Windows.Forms.TextBox TxEntrada;
+		private System.Windows.Forms.Label label3;
 	}
 }
 

@@ -52,8 +52,10 @@
     <Compile Include="Microondas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ArquivosEntrada\" />
+    <Content Include="ArquivosEntrada\aquecer-pipoca.txt" />
+    <Content Include="ArquivosEntrada\criar-programa-abacaxi.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

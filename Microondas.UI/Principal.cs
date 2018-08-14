@@ -1,6 +1,7 @@
 ﻿using MicroondasBenner;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -11,8 +12,8 @@ namespace Microondas.UI
 	{
 		private BLL.Microondas microondas;
 		private Timer timer;
-		private string textoEntrada;
 		private bool parado;
+		private string caminhoArquivos;
 
 		public Principal()
 		{
@@ -32,64 +33,38 @@ namespace Microondas.UI
 			MostrarMsgConsole(MensagensConst.msgInicial);
 			//Traz o label que mostra a potência selecionada para frente
 			LblPotencia.BringToFront();
+			//Pega o caminho para a pasta de arquivos
+			var caminhoExe = Path.GetDirectoryName(Application.ExecutablePath);
+			var caminhoApp = Path.GetFullPath(Path.Combine(caminhoExe, @"..\..\.."));
+			caminhoArquivos = Path.Combine(caminhoApp, @"Microondas.BLL\ArquivosEntrada");
 		}
 
 		#region Métodos de controle dos botões
 		private void BtnAquecerClick(object sender, System.EventArgs e)
 		{
+			//Caso o microondas esteja pausado, retomar o aquecimento
 			if (parado)
 			{
 				timer.Start();
 				parado = false;
 				return;
 			}
+			//Testa o texto de entrada para ver se é um arquivo
+			if (File.Exists(Path.Combine(caminhoArquivos, TxEntrada.Text)))
+			{
+				PrepararInterface(microondas.Aquecer(TxTempo.Text, TxPotencia.Text, Path.Combine(caminhoArquivos, TxEntrada.Text)));
+				return;
+			}
+			//Caso o campo entrada seja o caminho para um arquivo
 			PrepararInterface(microondas.Aquecer(TxTempo.Text, TxPotencia.Text, TxEntrada.Text));
 		}
-
 		private void BtnAquecerRapidoClick(object sender, System.EventArgs e)
 		{
 			PrepararInterface(microondas.Aquecer(BLL.Microondas.tempoPadrao.ToString(), BLL.Microondas.potenciaPadrao.ToString()));
 		}
 		private void BtnEnviarClick(object sender, EventArgs e)
 		{
-			if (TxEntrada.Text.ToLower() == "programas")
-			{
-				StringBuilder sb = new StringBuilder();
-
-				foreach (var programa in microondas.ProgramasPreDefinidos)
-				{
-					sb.Append(string.Join("\r\n", programa.PegarInfo()));
-					sb.Append("\r\n");
-				}
-
-				MostrarMsgConsole(sb.ToString());
-			}
-			else if (microondas.ProgramasPreDefinidos.Any(p => p.Nome.ToLower().Contains(TxEntrada.Text.ToLower())))
-			{
-				var programa = microondas
-								.ProgramasPreDefinidos
-								.FirstOrDefault(p => p.Nome.ToLower().Contains(TxEntrada.Text.ToLower()));
-				MostrarMsgConsole(programa.PegarInfo());
-			}
-			else if (TxEntrada.Text.ToLower().StartsWith("criar "))
-			{
-				var comando = TxEntrada.Text.Substring("criar ".Length - 1);
-
-				microondas.RegistrarPrograma(comando);
-
-				if (microondas.LogErros.Count > 0)
-				{
-					MostrarMsgConsole(microondas.LogErros.ToList(), MicroondasConst.modoErro);
-					microondas.Resetar();
-					return;
-				}
-				else
-				{
-					MostrarMsgConsole("-Programa criado com sucesso!");
-					TxEntrada.Text = string.Empty;
-				}
-			}
-
+			DecidirComando();
 		}
 		private void BtnResetarConsoleClick(object sender, EventArgs e)
 		{
@@ -102,6 +77,7 @@ namespace Microondas.UI
 				timer.Stop();
 				parado = true;
 			}
+			//Se já estiver parado, resetar a interface
 			else
 			{
 				ResetarInterface();
@@ -139,12 +115,15 @@ namespace Microondas.UI
 				if (res <= 0)
 				{
 					MostrarMsgConsole("Aquecida", MicroondasConst.modoAquecimento);
-					ResetarInterface();
 					timer.Stop();
+					TxEntrada.Text = string.Empty;
+					LblPotencia.Text = string.Empty;
 					return;
 				}
 
-				StringBuilder sb = new StringBuilder(TxEntrada.Text);
+				StringBuilder sb;
+
+				sb = new StringBuilder(TxEntrada.Text);
 
 				for (int i = 0; i < microondas.Programa.Configuracao.Potencia; i++)
 				{
@@ -153,7 +132,13 @@ namespace Microondas.UI
 				sb.Append(" ");
 
 				TxEntrada.Text = sb.ToString();
+				
+				if (!string.IsNullOrWhiteSpace(microondas.CaminhoArquivo))
+				{
+					AlterarArquivo(sb.ToString());
+				}
 
+				//Atualizar Cronômetro
 				MostrarMsgConsole((--res).ToString(), MicroondasConst.modoAquecimento);
 			}
 		}
@@ -210,7 +195,81 @@ namespace Microondas.UI
 			TxConsole.Text = string.Empty;
 		}
 
+		private void DecidirComando(string texto = "")
+		{
+			if (!string.IsNullOrWhiteSpace(texto))
+			{
+				TxEntrada.Text = texto;
+			}
+
+			//Se for o comando programas
+			if (TxEntrada.Text.ToLower() == "programas")
+			{
+				StringBuilder sb = new StringBuilder();
+
+				foreach (var programa in microondas.ProgramasPreDefinidos)
+				{
+					sb.Append(string.Join("\r\n", programa.PegarInfo()));
+					sb.Append("\r\n");
+				}
+
+				MostrarMsgConsole(sb.ToString());
+			}
+			//Se o comando para pegar informações de um programa
+			else if (microondas.ProgramasPreDefinidos.Any(p => p.Nome.ToLower().Contains(TxEntrada.Text.ToLower())))
+			{
+				var programa = microondas
+								.ProgramasPreDefinidos
+								.FirstOrDefault(p => p.Nome.ToLower().Contains(TxEntrada.Text.ToLower()));
+				MostrarMsgConsole(programa.PegarInfo());
+			}
+			//Se for o comando criar programa
+			else if (TxEntrada.Text.ToLower().StartsWith("criar "))
+			{
+				var comando = TxEntrada.Text.Substring("criar ".Length - 1);
+
+				microondas.RegistrarPrograma(comando);
+
+				if (microondas.LogErros.Count > 0)
+				{
+					MostrarMsgConsole(microondas.LogErros.ToList(), MicroondasConst.modoErro);
+					microondas.Resetar();
+					return;
+				}
+				else
+				{
+					MostrarMsgConsole("-Programa criado com sucesso!");
+					TxEntrada.Text = string.Empty;
+				}
+			}
+			//Se for um arquivo válido
+			else if (File.Exists(Path.Combine(caminhoArquivos, TxEntrada.Text)))
+			{
+				DecidirComando(File.ReadAllText(Path.Combine(caminhoArquivos, TxEntrada.Text)).ToLower());
+			}
+		}
 		#endregion
 
+		#region Métodos de Arquivo
+
+		private void AlterarArquivo(string msg)
+		{
+			try
+			{
+				using (FileStream fs = new FileStream(microondas.CaminhoArquivo, FileMode.Create))
+				{
+					using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+					{
+						w.WriteLine(msg);
+					}
+				}
+			}
+			catch
+			{
+
+			}
+		}
+
+		#endregion
 	}
 }
