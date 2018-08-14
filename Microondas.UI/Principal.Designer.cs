@@ -46,7 +46,7 @@
 			// BtnAquecer
 			// 
 			this.BtnAquecer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-			this.BtnAquecer.Location = new System.Drawing.Point(670, 435);
+			this.BtnAquecer.Location = new System.Drawing.Point(738, 437);
 			this.BtnAquecer.Name = "BtnAquecer";
 			this.BtnAquecer.Size = new System.Drawing.Size(170, 62);
 			this.BtnAquecer.TabIndex = 1;
@@ -56,14 +56,14 @@
 			// 
 			// TxTempo
 			// 
-			this.TxTempo.Location = new System.Drawing.Point(799, 325);
+			this.TxTempo.Location = new System.Drawing.Point(869, 322);
 			this.TxTempo.Name = "TxTempo";
 			this.TxTempo.Size = new System.Drawing.Size(137, 20);
 			this.TxTempo.TabIndex = 2;
 			// 
 			// TxPotencia
 			// 
-			this.TxPotencia.Location = new System.Drawing.Point(799, 299);
+			this.TxPotencia.Location = new System.Drawing.Point(869, 296);
 			this.TxPotencia.Name = "TxPotencia";
 			this.TxPotencia.Size = new System.Drawing.Size(137, 20);
 			this.TxPotencia.TabIndex = 3;
@@ -71,7 +71,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(660, 325);
+			this.label1.Location = new System.Drawing.Point(730, 325);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(110, 13);
 			this.label1.TabIndex = 4;
@@ -80,7 +80,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(660, 299);
+			this.label2.Location = new System.Drawing.Point(730, 296);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(52, 13);
 			this.label2.TabIndex = 5;
@@ -89,7 +89,7 @@
 			// BtnAquecRapido
 			// 
 			this.BtnAquecRapido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.BtnAquecRapido.Location = new System.Drawing.Point(670, 367);
+			this.BtnAquecRapido.Location = new System.Drawing.Point(738, 367);
 			this.BtnAquecRapido.Name = "BtnAquecRapido";
 			this.BtnAquecRapido.Size = new System.Drawing.Size(268, 62);
 			this.BtnAquecRapido.TabIndex = 6;
@@ -100,7 +100,7 @@
 			// BtnParar
 			// 
 			this.BtnParar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-			this.BtnParar.Location = new System.Drawing.Point(846, 435);
+			this.BtnParar.Location = new System.Drawing.Point(914, 435);
 			this.BtnParar.Name = "BtnParar";
 			this.BtnParar.Size = new System.Drawing.Size(92, 62);
 			this.BtnParar.TabIndex = 7;
@@ -120,7 +120,7 @@
 			// 
 			// BtnEnviar
 			// 
-			this.BtnEnviar.Location = new System.Drawing.Point(720, 238);
+			this.BtnEnviar.Location = new System.Drawing.Point(733, 238);
 			this.BtnEnviar.Name = "BtnEnviar";
 			this.BtnEnviar.Size = new System.Drawing.Size(75, 23);
 			this.BtnEnviar.TabIndex = 11;
@@ -130,7 +130,7 @@
 			// 
 			// BtnResetarConsole
 			// 
-			this.BtnResetarConsole.Location = new System.Drawing.Point(909, 238);
+			this.BtnResetarConsole.Location = new System.Drawing.Point(979, 238);
 			this.BtnResetarConsole.Name = "BtnResetarConsole";
 			this.BtnResetarConsole.Size = new System.Drawing.Size(27, 23);
 			this.BtnResetarConsole.TabIndex = 12;
@@ -147,12 +147,12 @@
 			this.TxConsole.Name = "TxConsole";
 			this.TxConsole.ReadOnly = true;
 			this.TxConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.TxConsole.Size = new System.Drawing.Size(641, 483);
+			this.TxConsole.Size = new System.Drawing.Size(711, 597);
 			this.TxConsole.TabIndex = 13;
 			// 
 			// TxEntrada
 			// 
-			this.TxEntrada.Location = new System.Drawing.Point(663, 43);
+			this.TxEntrada.Location = new System.Drawing.Point(733, 43);
 			this.TxEntrada.Multiline = true;
 			this.TxEntrada.Name = "TxEntrada";
 			this.TxEntrada.Size = new System.Drawing.Size(273, 189);
@@ -162,7 +162,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.ForeColor = System.Drawing.Color.Gray;
-			this.label3.Location = new System.Drawing.Point(667, 27);
+			this.label3.Location = new System.Drawing.Point(730, 28);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(145, 13);
 			this.label3.TabIndex = 15;
@@ -172,7 +172,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(954, 508);
+			this.ClientSize = new System.Drawing.Size(1018, 625);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.TxEntrada);
 			this.Controls.Add(this.TxConsole);

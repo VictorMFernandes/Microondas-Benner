@@ -100,13 +100,13 @@ namespace Microondas.BLL
 			{
 				if (resultado > 120 || resultado < 1)
 				{
-					LogErros.Add("-Tempo inválido, escolha um valor entre 1 e 120 segundos.");
+					LogErros.Add($"-{resultado} é um tempo inválido, escolha um valor entre 1 e 120 segundos.");
 				}
 				return resultado;
 			}
 			else
 			{
-				LogErros.Add("-Tempo de aquecimento inválido.");
+				LogErros.Add($"-{tempo} é um tempo de aquecimento inválido.");
 				return 0;
 			}
 		}
@@ -122,14 +122,14 @@ namespace Microondas.BLL
 			{
 				if (resultado > 10 || resultado < 1)
 				{
-					LogErros.Add("-Potência inválida, escolha um valor entre 1 e 10.");
+					LogErros.Add($"- {resultado} é uma potência inválida, escolha um valor entre 1 e 10.");
 				}
 
 				return resultado;
 			}
 			else
 			{
-				LogErros.Add("-Potência inválida.");
+				LogErros.Add($"-{potencia} é uma potência inválida.");
 				return 0;
 			}
 		}
@@ -142,7 +142,7 @@ namespace Microondas.BLL
 								.FirstOrDefault(p => p.Nome.ToLower().Contains(TextoEntrada));
 			}
 
-			LogErros.Add("-Alimento incompatível com o programa.");
+			LogErros.Add($"-{TextoEntrada} não é um alimento compatível com o programa.");
 			return null;
 		}
 	}

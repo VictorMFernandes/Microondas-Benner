@@ -20,6 +20,8 @@ namespace MicroondasBenner
 			"\"Aquecer\", ou cancelar o aquecimento clicando em \"Parar\" novamente",
 			"-Se quiser utilizar um dos arquivos encontrados na pasta ArquivosEntrada para aquecer, digite o nome desse" +
 			" arquivo e aperte o botão \"Aquecer\"",
+			"-Caso queira utilizar arquivos para configurar o microondas, digite o nome desse arquivo e aperte" +
+			" o botão \"Enviar\"",
 			"-Você também pode enviar mensagens pelo campo entrada para executar as seguintes funções:",
 			"--programas ->  mostra todos os programas pré-definidos do microondas",
 			"--nomeDoAlimento ->  mostra o programa pré-definido para o alimento especificado, caso exista",

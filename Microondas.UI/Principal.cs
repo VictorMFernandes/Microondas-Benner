@@ -192,7 +192,7 @@ namespace Microondas.UI
 
 		private void LimparMsgConsole()
 		{
-			TxConsole.Text = string.Empty;
+			MostrarMsgConsole(MensagensConst.msgInicial);
 		}
 
 		private void DecidirComando(string texto = "")
